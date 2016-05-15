@@ -1,1 +1,3 @@
-# dplyr.way_vs_data.table.way
+## My Two favorite Packages for Data Manupilation in R
+
+Details available [here](http://datascience-enthusiast.com/R/favorite_data_manupilation_packages.html).
