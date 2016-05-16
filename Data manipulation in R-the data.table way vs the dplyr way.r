@@ -88,7 +88,7 @@ from_data_table = setorder(hospital_spending_DT, State)
 
 compare(from_dplyr,from_data_table, allowAll=TRUE)
 
-from_dplyr = arrange(hospital_spending, State)
+from_dplyr = arrange(hospital_spending, desc(State))
 
 from_data_table = setorder(hospital_spending_DT, -State)
 
