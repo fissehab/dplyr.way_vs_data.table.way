@@ -102,7 +102,7 @@ compare(from_dplyr,from_data_table, allowAll=TRUE)
 
 from_dplyr = mutate(hospital_spending, diff=Avg.Spending.Per.Episode..State. - Avg.Spending.Per.Episode..Nation.)
 
-from_data_table = hospital_spending_DT
+from_data_table = copy(hospital_spending_DT)
 from_data_table = from_data_table[,diff := Avg.Spending.Per.Episode..State. - Avg.Spending.Per.Episode..Nation.]
 
 compare(from_dplyr,from_data_table, allowAll=TRUE)
