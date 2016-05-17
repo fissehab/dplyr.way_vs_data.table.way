@@ -1,10 +1,4 @@
 
-setwd("C:/Fish/R/data.table")
-options(warn=-1) # Disable any warnings for this session
-options(jupyter.plot_mimetypes = 'image/png')
-options(repr.plot.width = 6)
-options(repr.plot.height = 4)
-
 library(dplyr)
 library(data.table)
 library(lubridate)
