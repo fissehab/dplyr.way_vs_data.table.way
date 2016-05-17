@@ -1,4 +1,10 @@
 
+setwd("C:/Fish/R/data.table")
+options(warn=-1) # Disable any warnings for this session
+options(jupyter.plot_mimetypes = 'image/png')
+options(repr.plot.width = 6)
+options(repr.plot.height = 4)
+
 library(dplyr)
 library(data.table)
 library(lubridate)
@@ -21,7 +27,7 @@ cols = 6:11; # These are the columns to be changed to numeric.
 hospital_spending[,cols] <- lapply(hospital_spending[,cols], as.numeric)
 
 cols = 12:13; # These are the columns to be changed to dates.
-hospital_spending[,cols] <- lapply(hospital_spending[,cols], mdy)
+hospital_spending[,cols] <- lapply(hospital_spending[,cols], ymd_hms)
 
 sapply(hospital_spending,class)
 
@@ -38,11 +44,11 @@ from_dplyr = select(hospital_spending, -Hospital.Name)
 from_data_table = hospital_spending_DT[,!c("Hospital.Name"),with=FALSE]
 compare(from_dplyr,from_data_table, allowAll=TRUE)
 
-DT=hospital_spending_DT
+DT=copy(hospital_spending_DT)
 DT=DT[,Hospital.Name:=NULL]
 "Hospital.Name"%in%names(DT)
 
-DT=hospital_spending_DT
+DT=copy(hospital_spending_DT)
 DT=DT[,c("Hospital.Name","State","Measure.Start.Date","Measure.End.Date"):=NULL]
 c("Hospital.Name","State","Measure.Start.Date","Measure.End.Date")%in%names(DT)
 
@@ -108,11 +114,11 @@ from_data_table = from_data_table[,diff := Avg.Spending.Per.Episode..State. - Av
 compare(from_dplyr,from_data_table, allowAll=TRUE)
 
 from_dplyr = mutate(hospital_spending, diff1=Avg.Spending.Per.Episode..State. - Avg.Spending.Per.Episode..Nation.,
-                                        diff2=End_date-Start_Date)
+                                        diff2=End_Date-Start_Date)
 
-from_data_table = hospital_spending_DT
+from_data_table = copy(hospital_spending_DT)
 from_data_table = from_data_table[,c("diff1","diff2") := list(Avg.Spending.Per.Episode..State. - Avg.Spending.Per.Episode..Nation.,
-                                                             diff2=End_date-Start_Date)]
+                                                             diff2=End_Date-Start_Date)]
 
 compare(from_dplyr,from_data_table, allowAll=TRUE)
 
