@@ -18,6 +18,7 @@ hospital_spending=select(hospital_spending,-c(sid:meta))
 glimpse(hospital_spending)
 
 cols = 6:11; # These are the columns to be changed to numeric.
+hospital_spending[,cols] <- lapply(hospital_spending[,cols], as.character)
 hospital_spending[,cols] <- lapply(hospital_spending[,cols], as.numeric)
 
 cols = 12:13; # These are the columns to be changed to dates.
