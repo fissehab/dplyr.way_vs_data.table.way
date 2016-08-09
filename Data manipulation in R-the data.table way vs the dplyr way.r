@@ -1,11 +1,10 @@
-
 library(dplyr)
 library(data.table)
 library(lubridate)
 library(jsonlite)
 library(tidyr)
-library(ggplot2)
 library(compare)
+library(ggplot2)
 
 spending=fromJSON("https://data.medicare.gov/api/views/nrth-mfg3/rows.json?accessType=DOWNLOAD")
 names(spending)
@@ -165,7 +164,6 @@ arrange(desc(mean))%>%head(10)%>%
           ggplot(aes(x=State,y=mean))+geom_bar(stat='identity',color='darkred',fill='skyblue')+
           xlab("")+ggtitle('Average Spending Per Episode by State')+
           ylab('Average')+ coord_cartesian(ylim = c(3800, 4000))
-
 
 
 hospital_spending_DT[,.(mean=mean(Avg.Spending.Per.Episode..Hospital.)),
